@@ -1,24 +1,50 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { Card } from "./components/card/Card";
+import { Modal } from "./components/modal/Modal";
+import { data } from "./data";
+
+import "./App.css";
+import { Footer } from "./components/footer/Footer";
+
+const initialState = 0;
 
 function App() {
+  const [state, setState] = useState(data);
+  const [cardView, setCardView] = useState<number>(initialState);
+
+  const nextView = () => {
+    if (cardView + 1 > state.length - 1) {
+      return setCardView(initialState);
+    }
+    setCardView(cardView + 1);
+  };
+
+  const prevView = () => {
+    if (cardView - 1 < 0) {
+      return setCardView(state.length - 1);
+    }
+    setCardView(cardView - 1);
+  };
+
+  const orderAleatory = () => {
+    const randomIndex = state.sort((a, b) => Math.random() - 0.5);
+
+    setState([...randomIndex]);
+  };
+
+  const orderAlphabet = () => setState([...state.sort((a, b) => a.id - b.id)]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header>
+        <h1>Irregular Verbs</h1>
       </header>
+
+      <Card card={state[cardView]} nextView={nextView} prevView={prevView} />
+
+      <Modal orderAleatory={orderAleatory} orderAlphabet={orderAlphabet} />
+
+      <Footer />
     </div>
   );
 }

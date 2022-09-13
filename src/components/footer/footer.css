@@ -1,0 +1,23 @@
+.footer {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.footer img {
+  margin: 6px;
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  transition: transform 0.3s;
+}
+
+.footer .portrait {
+  height: 18px;
+}
+
+.footer img:hover {
+  transform: rotate(10deg);
+}

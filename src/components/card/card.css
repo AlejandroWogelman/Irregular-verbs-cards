@@ -1,0 +1,86 @@
+.card {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+}
+.card-content {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+
+  transition: all 0.6s;
+}
+
+h3 {
+  font-size: 3rem;
+}
+p {
+  font-size: 2rem;
+  margin: 1rem 0;
+}
+span {
+  font-size: 1.5rem;
+}
+
+.front {
+  background-color: #a0d5cf;
+  transform: perspective(500px) rotateY(0deg);
+}
+
+.back {
+  background-color: rgb(218 236 61);
+  transform: perspective(500px) rotateY(180deg);
+}
+
+.rotate .front {
+  transform: rotateY(180deg);
+}
+
+.rotate .back {
+  transform: rotateY(360deg);
+}
+
+@keyframes card {
+  from {
+    opacity: 0.8;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.btn {
+  margin-top: 8px;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.3rem;
+  margin: 8px;
+}
+
+.btn-rotate {
+  background-color: rgb(248, 248, 82);
+}
+
+.btn-next {
+  background-color: rgb(22, 21, 21);
+  color: rgb(182, 179, 179);
+}
+.btn:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 380px) {
+  .btn {
+    font-size: 1rem;
+  }
+}
