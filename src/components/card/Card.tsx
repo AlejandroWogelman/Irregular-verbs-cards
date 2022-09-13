@@ -9,7 +9,16 @@ interface Prop {
 }
 
 export const Card = ({ card, nextView, prevView }: Prop) => {
-  const { past, pastPronuntiation, present, pronuntiation, spanish } = card;
+  const { past, present, spanish } = card;
+
+  const textSlice = (text: string): [string, string] => {
+    const bracket = text.indexOf("[");
+
+    const infinitive = text.slice(0, bracket);
+    const pronuntiation = text.slice(bracket);
+
+    return [infinitive, pronuntiation];
+  };
 
   const cardRef = useRef<HTMLElement>(null);
 
@@ -28,13 +37,13 @@ export const Card = ({ card, nextView, prevView }: Prop) => {
     <>
       <article ref={cardRef} className="card">
         <div className="card-content front">
-          <h3>{present}</h3>
-          <p>{pronuntiation}</p>
+          <h3>{textSlice(present)[0]}</h3>
+          <p>{textSlice(present)[1]}</p>
           <span>{spanish}</span>
         </div>
         <div className="card-content back">
-          <h3>{past}</h3>
-          <p>{pastPronuntiation}</p>
+          <h3>{textSlice(past)[0]}</h3>
+          <p>{textSlice(past)[1]}</p>
         </div>
       </article>
 

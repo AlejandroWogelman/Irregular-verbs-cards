@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card } from "./components/card/Card";
 import { Modal } from "./components/modal/Modal";
 import { data } from "./data";
@@ -33,6 +33,10 @@ function App() {
   };
 
   const orderAlphabet = () => setState([...state.sort((a, b) => a.id - b.id)]);
+
+  useEffect(() => {
+    console.log(state);
+  }, []);
 
   return (
     <div className="App">
